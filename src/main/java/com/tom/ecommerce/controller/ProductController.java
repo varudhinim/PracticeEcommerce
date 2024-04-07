@@ -2,7 +2,6 @@ package com.tom.ecommerce.controller;
 
 import com.tom.ecommerce.entity.Product;
 import com.tom.ecommerce.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
