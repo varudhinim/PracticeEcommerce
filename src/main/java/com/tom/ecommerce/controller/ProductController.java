@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/ecommerce/product")
 public class ProductController {
 
-    //@Autowired
+
     ProductService ps=new ProductService();
 
     @GetMapping("/print")
