@@ -12,9 +12,9 @@ public class ECommerceApplication {
         SpringApplication.run(ECommerceApplication.class, args);
     }
 
-    @Bean
+   /* @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
-    }
+    }*/
 
 }
