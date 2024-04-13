@@ -14,12 +14,8 @@ import java.util.*;
 public class ProductService {
 
     List<ProductDTO> productList=new ArrayList<ProductDTO>();
-    Product pr = new Product();
-    Product pr2 = new Product();
-    Product pr3 = new Product();
-
-    @Autowired
-    RestTemplate restTemplate;
+    //@Autowired
+    RestTemplate restTemplate=  new RestTemplate();
 
     String url = "https://fakestoreapi.com/products/";
     Product[] products=restTemplate.getForObject(url, Product[].class);
@@ -30,32 +26,6 @@ public class ProductService {
         productDTO.setTitle(product.getTitle());
 
         return productDTO;
-    }
-
-    public ProductService() {
-        // Constructor: You can initialize objects here
-
-        pr.setId(1);
-        pr.setTitle("iPhone 20 pro max");
-        pr.setProdDesc("Haters will say, its waste of money😏");
-        pr.setProdPrice(3000000);
-        pr.setProdOwner("Tom");
-        //productList.add(pr);
-
-        pr2.setId(2);
-        pr2.setTitle("Nokia 33310");
-        pr2.setProdDesc("Old is gold, gold is bold 📱");
-        pr2.setProdPrice(100);
-        pr2.setProdOwner("Tom");
-       // productList.add(pr2);
-
-        pr3.setId(3);
-        pr3.setTitle("Apsara Pencil");
-        pr3.setProdDesc("Extra marks for good handwriting ✏️");
-        pr3.setProdPrice(5);
-        pr3.setProdOwner("Tom");
-        //productList.add(pr3);
-
     }
 
     public List<ProductDTO> getProductList() {
@@ -75,9 +45,39 @@ public class ProductService {
                 }
             }
             if(productDTO==null)
-                throw new ProductException("No Product ");
+                throw new ProductException("No Product Viji");
 
             return productDTO;
     }
 
 }
+/*
+ Product pr = new Product();
+    Product pr2 = new Product();
+    Product pr3 = new Product();
+
+public ProductService() {
+    // Constructor: You can initialize objects here
+
+    pr.setId(1);
+    pr.setTitle("iPhone 20 pro max");
+    pr.setProdDesc("Haters will say, its waste of money😏");
+    pr.setProdPrice(3000000);
+    pr.setProdOwner("Tom");
+    //productList.add(pr);
+
+    pr2.setId(2);
+    pr2.setTitle("Nokia 33310");
+    pr2.setProdDesc("Old is gold, gold is bold 📱");
+    pr2.setProdPrice(100);
+    pr2.setProdOwner("Tom");
+    // productList.add(pr2);
+
+    pr3.setId(3);
+    pr3.setTitle("Apsara Pencil");
+    pr3.setProdDesc("Extra marks for good handwriting ✏️");
+    pr3.setProdPrice(5);
+    pr3.setProdOwner("Tom");
+    //productList.add(pr3);
+
+}*/
