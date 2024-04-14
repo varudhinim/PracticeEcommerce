@@ -1,83 +1,37 @@
-package com.tom.ecommerce.service;
+package com.tom.ecommerce.Service;
 
-import com.tom.ecommerce.dto.ProductDTO;
-import com.tom.ecommerce.entity.Product;
-import com.tom.ecommerce.exception.ProductException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tom.ecommerce.Dto.FakeStoryDto;
+import com.tom.ecommerce.Dto.GetproductDto;
+import com.tom.ecommerce.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
-import java.util.*;
-
 @Service
+
 public class ProductService {
 
-    List<ProductDTO> productList=new ArrayList<ProductDTO>();
-    //@Autowired
-    RestTemplate restTemplate=  new RestTemplate();
-
-    String url = "https://fakestoreapi.com/products/";
-    Product[] products=restTemplate.getForObject(url, Product[].class);
-
-    public ProductDTO convertDTO(Product product) {
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(product.getId());
-        productDTO.setTitle(product.getTitle());
-
-        return productDTO;
+    public GetproductDto getProductById(Long id){
+       GetproductDto obj = new GetproductDto();
+       obj.setName("TV");
+       obj.setPrice(13478.0);
+       obj.setImgUrl("www.LGTV.com");
+       return obj;
     }
 
-    public List<ProductDTO> getProductList() {
+    public FakeStoryDto getFakeProductBYId(Long id){
+        RestTemplate  rest = new RestTemplate();
+        String url = "https://fakestoreapi.com/products/" +id;
+        FakeStoryDto faketyped = rest.getForObject(url, FakeStoryDto.class);
+        // System.out.println(fkpr);
 
-        for(Product product:products){
-            productList.add(convertDTO(product));
-        }
-                return productList;
-    }
 
-    public ProductDTO getProductById(long id) throws Exception{
-            ProductDTO productDTO = null;
-            for (Product product : products) {
-                //System.out.println(product.getId());
-                if (product.getId() == id) {
-                    productDTO=convertDTO(product); // Product found, return it
-                }
-            }
-            if(productDTO==null)
-                throw new ProductException("No Product Viji");
-
-            return productDTO;
+        FakeStoryDto obj = new FakeStoryDto();
+        obj.setTitle(faketyped.getTitle());
+        obj.setPrice(faketyped.getPrice());
+        obj.setImg(faketyped.getImg());
+        obj.setId(faketyped.getId());
+        obj.setDescription(faketyped.getDescription());
+        return obj;
     }
 
 }
-/*
- Product pr = new Product();
-    Product pr2 = new Product();
-    Product pr3 = new Product();
-
-public ProductService() {
-    // Constructor: You can initialize objects here
-
-    pr.setId(1);
-    pr.setTitle("iPhone 20 pro max");
-    pr.setProdDesc("Haters will say, its waste of money😏");
-    pr.setProdPrice(3000000);
-    pr.setProdOwner("Tom");
-    //productList.add(pr);
-
-    pr2.setId(2);
-    pr2.setTitle("Nokia 33310");
-    pr2.setProdDesc("Old is gold, gold is bold 📱");
-    pr2.setProdPrice(100);
-    pr2.setProdOwner("Tom");
-    // productList.add(pr2);
-
-    pr3.setId(3);
-    pr3.setTitle("Apsara Pencil");
-    pr3.setProdDesc("Extra marks for good handwriting ✏️");
-    pr3.setProdPrice(5);
-    pr3.setProdOwner("Tom");
-    //productList.add(pr3);
-
-}*/
