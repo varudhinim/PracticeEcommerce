@@ -16,7 +16,5 @@ public class Product {
     private Double price;
     private String imgUrl;
     private String seller;
-
-
 }
 ;

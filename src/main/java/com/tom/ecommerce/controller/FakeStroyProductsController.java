@@ -4,6 +4,8 @@ import com.tom.ecommerce.Dto.FakeStoryDto;
 import com.tom.ecommerce.Service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/fakeStory/Products")
 public class FakeStroyProductsController {
@@ -15,9 +17,15 @@ public class FakeStroyProductsController {
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody FakeStoryDto getProductBYIdfake(@PathVariable("id") Long id){
+    public @ResponseBody FakeStoryDto getProductBYIdfake(@PathVariable("id") Long id) throws Exception {
         return prds.getFakeProductBYId(id);
     }
+
+    @GetMapping("/All")
+    public @ResponseBody List<FakeStoryDto> getAllProducts(){
+        return prds.getAllProducts();
+    }
+
     @GetMapping("")
     public String fakeStory(){
         return "From fakeStry Controller ";
