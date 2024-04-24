@@ -7,16 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<user,Long> {
-
-    @Override
-    Optional<user> findById(Long id);
-
-    Optional<user> findByEmail(String email);
-
-    Optional<user> findByUsername(String username);
-
-    List<user> findByUsernameContaining(String username);
-
-    user save(user user);
-
+    List<user>findByUsername(String username);
 }
