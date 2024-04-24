@@ -10,9 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-@Entity
+
 public class Product {
-@Id
     private long id;
     private String name;
     private String description;
